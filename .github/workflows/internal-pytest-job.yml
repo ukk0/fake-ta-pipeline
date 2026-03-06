@@ -12,6 +12,7 @@ jobs:
         run: echo "Fake pre-commit checks"
 
   tests-parallel:
+    needs: pre-commit
     runs-on: ubuntu-latest
     strategy:
       matrix:
