@@ -1,9 +1,16 @@
-name: Test Automation
+name: TA for local
 
 on:
   workflow_dispatch:
 
 jobs:
+
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Pre-commit"
+        run: echo "Fake pre-commit checks"
+
   tests-parallel:
     runs-on: ubuntu-latest
     strategy:
@@ -11,6 +18,7 @@ jobs:
         test-type: [smoke, integration, e2e]
 
     steps:
+      - name: "Run all tests"
       - uses: actions/checkout@v5
 
       - uses: actions/setup-python@v6
