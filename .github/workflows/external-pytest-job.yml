@@ -32,4 +32,4 @@ jobs:
       - name: Run pytest
         run: |
           echo "Running test suite: ${{ inputs.test-type }}"
-          pytest -m ${{ inputs.test-type }} --rootdir=ta-repo
+          pytest tests/${{ inputs.test-type }} --rootdir=ta-repo
