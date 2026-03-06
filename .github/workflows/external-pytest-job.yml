@@ -12,18 +12,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      # Checkout the TA repo itself (not the caller)
+      - name: Checkout TA repo
+        uses: actions/checkout@v5
+        with:
+          repository: ukk0/actions-test-pipeline
+          path: ta-repo
+          ref: main
 
       - uses: actions/setup-python@v6
         with:
           python-version: "3.13"
-          cache: "pip"
-          cache-dependency-path: requirements.txt
+          cache: pip
+          cache-dependency-path: ta-repo/requirements.txt
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r ta-repo/requirements.txt
 
       - name: Run pytest
         run: |
-          echo "Running test suite: ${{ inputs.test-type }}" 
-          pytest -m ${{ inputs.test-type }}
+          echo "Running test suite: ${{ inputs.test-type }}"
+          pytest -m ${{ inputs.test-type }} --rootdir=ta-repo
