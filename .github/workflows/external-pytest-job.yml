@@ -1,4 +1,4 @@
-name: TA for remote
+name: Shared TA workflow
 
 on:
   workflow_call:

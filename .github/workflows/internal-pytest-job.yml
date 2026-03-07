@@ -1,4 +1,4 @@
-name: TA for local
+name: Local development
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Pre-commit"
-        run: echo "Fake pre-commit checks"
+        run: echo "Running fake pre-commit checks..."
 
   tests-parallel:
     needs: pre-commit
